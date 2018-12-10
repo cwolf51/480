@@ -9,6 +9,17 @@ package homework7;
  *
  * @author chris
  */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package homework7;
+
+/**
+ *
+ * @author chris
+ */
 public class Student {
     private int ID;
     private String name;
@@ -16,24 +27,30 @@ public class Student {
     private String gradeLevel;
     private static int nextID;
     
+    
     public Student(String name, String gradeLevel, String GPA)
     {
+        this.ID = nextID;
         this.name = name;
         this.gradeLevel =  gradeLevel;
         this.GPA = GPA;
-        ID++;
+        nextID++;
+        
     }
     
     public Student(int ID, String name, String gradeLevel, String GPA)
     {
-        this.ID = ID;
+        this.ID = nextID;
         this.name = name;
         this.gradeLevel = gradeLevel;
         this.GPA = GPA;
+        nextID++;
+        
     }
     
     public int getID(){
     return ID;
+    
     }
     
     public void setID(){
@@ -73,26 +90,19 @@ public class Student {
 
 
 
+
 package homework7;
 import java.util.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.beans.*;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 
 public class FXStudent extends Application {
     Student createStudent;
@@ -178,6 +188,11 @@ public class FXStudent extends Application {
 
         
         Student createStudent = new Student(name, gradeLevel, GPA);
+        
+        txtName.clear();
+        txtGrade.clear();
+        txtGPA.clear();
+        
        
         System.out.println("This worked");
         
@@ -191,9 +206,6 @@ public class FXStudent extends Application {
       //txtGeneral.output.setText(studentArray.get(0));
       //txtGeneral.setText("Test");
       
-      
-        
-        
     });
     
     
