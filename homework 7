@@ -1,0 +1,217 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package homework7;
+
+/**
+ *
+ * @author chris
+ */
+public class Student {
+    private int ID;
+    private String name;
+    private String GPA;
+    private String gradeLevel;
+    private static int nextID;
+    
+    public Student(String name, String gradeLevel, String GPA)
+    {
+        this.name = name;
+        this.gradeLevel =  gradeLevel;
+        this.GPA = GPA;
+        ID++;
+    }
+    
+    public Student(int ID, String name, String gradeLevel, String GPA)
+    {
+        this.ID = ID;
+        this.name = name;
+        this.gradeLevel = gradeLevel;
+        this.GPA = GPA;
+    }
+    
+    public int getID(){
+    return ID;
+    }
+    
+    public void setID(){
+    this.ID = ID;
+    }
+    
+    public String getName(){
+    return name;
+    }
+    
+    public void setName(){
+    this.name = name;
+    }
+    
+    public String getGradeLevel(){
+    return gradeLevel;
+    }
+    
+    public void setGradeLevel(){
+    this.gradeLevel = gradeLevel;
+    }
+    
+    public String getGPA(){
+    return GPA;
+    }
+    
+    public void setGPA(){
+        this.GPA = GPA;
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("Name: " + this.name + "Grade Level: " + this.gradeLevel + "GPA: " + this.GPA + "Student ID Number: " + this.ID);
+    }
+}
+
+
+
+
+package homework7;
+import java.util.*;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.beans.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
+
+public class FXStudent extends Application {
+    Student createStudent;
+    
+    @Override
+    public void start(Stage primaryStage) {
+        
+    
+    ArrayList <Student> studentArray = new ArrayList<>();
+    
+    
+    
+    studentArray.add(new Student("Chris", "grade level", "GPA"));
+    
+    
+        //combo box
+//       ObservableList comboList = FXCollections.observableArrayList();
+//       ComboBox<String> comboChoice = new ComboBox<String>(comboList);
+//       ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList());
+       
+       ObservableList<Student> obsCreateStudent = FXCollections.observableArrayList();
+       ComboBox<Student> cmboStudent = new ComboBox<Student>(obsCreateStudent);
+
+    //Labels
+    Label lblName = new Label("Name:");
+    Label lblGrade = new Label("Grade:");
+    Label lblGPA = new Label("GPA:");
+    
+    //Textfields
+    TextField txtName = new TextField();
+    TextField txtGrade = new TextField();
+    TextField txtGPA = new TextField();
+    
+    //Text Area
+    TextArea txtGeneral = new TextArea();
+    
+    
+    //Buttons
+    Button btnCreateStudent = new Button("Create Student ->");
+    Button btnSimulateGrade = new Button("Simulate Grades");
+    
+    //Combobox
+    ObservableList studentNames;
+        studentNames = FXCollections.observableArrayList();
+    
+
+    //Grid Pane
+    GridPane primaryPane = new GridPane();
+    primaryPane.setAlignment(Pos.CENTER);
+
+    
+    Scene primaryScene = new Scene(primaryPane, 750,750);
+    
+    primaryStage.setTitle("Student Grade Simulator");
+    primaryStage.setScene(primaryScene);
+    primaryStage.show();
+    primaryPane.setHgap(10);
+    primaryPane.setVgap(10);
+    
+    //buttons
+    primaryPane.add(btnCreateStudent, 1, 10);
+    primaryPane.add(btnSimulateGrade, 3, 2);
+    //labels
+    primaryPane.add(lblName,1, 5);
+    primaryPane.add(lblGrade,1, 6);
+    primaryPane.add(lblGPA, 1, 7);
+    //text areas
+    primaryPane.add(txtName, 2, 5);
+    primaryPane.add(txtGrade, 2, 6);
+    primaryPane.add(txtGPA, 2, 7);
+    primaryPane.add(txtGeneral, 2,15);
+    //add combo box
+    primaryPane.add(cmboStudent,2,2);
+    
+    
+    
+    
+    btnCreateStudent.setOnAction(e -> {
+        String name = txtName.getText();
+        String gradeLevel = txtGrade.getText();
+        String GPA = txtGPA.getText();
+        
+
+        
+        Student createStudent = new Student(name, gradeLevel, GPA);
+       
+        System.out.println("This worked");
+        
+        //Student newStudent = new Student(name, gradeLevel, GPA);
+        cmboStudent.getItems().addAll(createStudent);
+        
+    });
+    
+    btnSimulateGrade.setOnAction(e -> {
+      System.out.println("rounfd 2");
+      //txtGeneral.output.setText(studentArray.get(0));
+      //txtGeneral.setText("Test");
+      
+      
+        
+        
+    });
+    
+    
+    
+    
+    }
+        
+    
+    
+public static void main(String[] args) {
+        Application.launch(args);
+        String test = "please show up";
+        System.out.println("FUCK");
+       
+        
+        
+  }
+
+}//end of class
+
+
